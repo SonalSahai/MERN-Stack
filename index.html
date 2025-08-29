@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sonal Sahai - Full Stack Developer</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .business-card {
+      background: white;
+      border-radius: 20px;
+      border: 2px solid #eee; /* light gray boundary */
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2); /* deeper shadow */
+      padding: 30px;
+      display: flex; /* horizontal layout */
+      align-items: center;
+      gap: 30px; /* space between image and details */
+      max-width: 800px;
+      width: 100%;
+    }
+
+    .profile-image {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      border: 5px solid #764ba2;
+      object-fit: cover;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+      flex-shrink: 0; /* don’t shrink image */
+    }
+
+    .info {
+      flex: 1; /* take remaining space */
+    }
+
+    .name {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 8px;
+    }
+
+    .title {
+      font-size: 1.2rem;
+      color: #666;
+      margin-bottom: 15px;
+      font-weight: 500;
+    }
+
+    .bio {
+      color: #555;
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+
+    .social-links {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    .social-links a {
+      display: inline-block;
+      padding: 8px 16px;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      text-decoration: none;
+      border-radius: 25px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .social-links a:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .contact-info p {
+      color: #777;
+      font-size: 0.9rem;
+      margin: 3px 0;
+    }
+
+    @media (max-width: 600px) {
+      .business-card {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="business-card">
+    <!-- Profile Picture -->
+    <img src="myphoto.jpg.jpg" alt="Sonal Sahai - Professional Headshot" class="profile-image">
+
+    <!-- Info Section -->
+    <div class="info">
+      <h1 class="name">Sonal Sahai</h1>
+      <h2 class="title">Computer Science Student | Web Developer</h2>
+      <p class="bio">
+       3rd-year Computer Science student | Skilled in Java, Python, PHP & .NET |   Ex-THDC Intern
+      </p>
+
+      <!-- Social Media Links -->
+      <ul class="social-links">
+        <li><a href="https://linkedin.com/in/sonalsahai" target="_blank">LinkedIn</a></li>
+        <li><a href="https://github.com/sonalsahai" target="_blank">GitHub</a></li>
+        <li><a href="mailto:sonalsahai1412@email.com">Email</a></li>
+      </ul>
+
+      <!-- Contact Information -->
+      <div class="contact-info">
+        <p>📧 sonalsahai1412@email.com</p>
+        <p>📱 +91 7567837890</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
