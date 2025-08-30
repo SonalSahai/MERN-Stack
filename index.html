@@ -13,103 +13,153 @@
 
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);
       min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
       padding: 20px;
+      transition: background 0.5s ease, color 0.5s ease;
+    }
+
+    /* THEME VARIABLES */
+    body.light {
+      --bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      --card-bg: #fff;
+      --card-border: #e0e0e0;
+      --name: #222;
+      --title: #764ba2;
+      --text: #444;
+      --contact: #555;
+      --shadow: rgba(0, 0, 0, 0.15);
+    }
+
+    body.dark {
+      --bg: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+      --card-bg: #222;
+      --card-border: rgba(255, 255, 255, 0.08);
+      --name: #fff;
+      --title: #a18cd1;
+      --text: #ddd;
+      --contact: #bbb;
+      --shadow: rgba(0, 0, 0, 0.6);
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
     }
 
     .business-card {
-      background: white;
+      background: var(--card-bg);
       border-radius: 20px;
-      border: 2px solid #eee; /* light gray boundary */
-      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2); /* deeper shadow */
-      padding: 30px;
-      display: flex; /* horizontal layout */
+      border: 1px solid var(--card-border);
+      box-shadow: 0 20px 40px var(--shadow);
+      padding: 40px;
+      display: flex;
       align-items: center;
-      gap: 30px; /* space between image and details */
-      max-width: 800px;
+      gap: 30px;
+      max-width: 850px;
       width: 100%;
+      transition: all 0.4s ease;
+      position: relative;
     }
 
     .profile-image {
-      width: 150px;
-      height: 150px;
+      width: 160px;
+      height: 160px;
       border-radius: 50%;
-      border: 5px solid #764ba2;
+      border: 5px solid #667eea;
       object-fit: cover;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-      flex-shrink: 0; /* don’t shrink image */
-    }
-
-    .info {
-      flex: 1; /* take remaining space */
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+      flex-shrink: 0;
     }
 
     .name {
-      font-size: 2rem;
-      font-weight: bold;
-      color: #333;
+      font-size: 2.2rem;
+      font-weight: 700;
       margin-bottom: 8px;
+      color: var(--name);
     }
 
     .title {
       font-size: 1.2rem;
-      color: #666;
+      color: var(--title);
       margin-bottom: 15px;
       font-weight: 500;
     }
 
     .bio {
-      color: #555;
-      line-height: 1.5;
-      margin-bottom: 20px;
+      color: var(--text);
+      line-height: 1.6;
+      margin-bottom: 25px;
+      font-size: 1rem;
     }
 
     .social-links {
       list-style: none;
-      padding: 0;
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 15px;
+      gap: 12px;
+      margin-bottom: 20px;
     }
 
     .social-links a {
-      display: inline-block;
-      padding: 8px 16px;
+      padding: 10px 20px;
       background: linear-gradient(135deg, #667eea, #764ba2);
       color: white;
       text-decoration: none;
-      border-radius: 25px;
+      border-radius: 30px;
       font-weight: 500;
       transition: all 0.3s ease;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     }
 
     .social-links a:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+      transform: translateY(-2px) scale(1.05);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
     }
 
     .contact-info p {
-      color: #777;
-      font-size: 0.9rem;
-      margin: 3px 0;
+      color: var(--contact);
+      font-size: 0.95rem;
+      margin: 4px 0;
     }
 
-    @media (max-width: 600px) {
+    /* TOGGLE BUTTON */
+    .theme-toggle {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--title);
+      transition: transform 0.3s ease;
+    }
+
+    .theme-toggle:hover {
+      transform: scale(1.2);
+    }
+
+    /* Responsive */
+    @media (max-width: 650px) {
       .business-card {
         flex-direction: column;
         text-align: center;
+        padding: 30px;
+      }
+      .profile-image {
+        margin-bottom: 20px;
       }
     }
   </style>
 </head>
 <body>
   <div class="business-card">
+    <!-- Theme Toggle Button -->
+    <button class="theme-toggle" id="themeToggle">🌙</button>
+
     <!-- Profile Picture -->
     <img src="myphoto.jpg.jpg" alt="Sonal Sahai - Professional Headshot" class="profile-image">
 
@@ -118,7 +168,7 @@
       <h1 class="name">Sonal Sahai</h1>
       <h2 class="title">Computer Science Student | Web Developer</h2>
       <p class="bio">
-       3rd-year Computer Science student | Skilled in Java, Python, PHP & .NET |   Ex-THDC Intern
+       3rd-year Computer Science student | Skilled in Java, Python, PHP & .NET | Ex-THDC Intern
       </p>
 
       <!-- Social Media Links -->
@@ -135,5 +185,38 @@
       </div>
     </div>
   </div>
+
+  <script>
+    const body = document.body;
+    const toggleBtn = document.getElementById('themeToggle');
+
+    // Check system theme or saved preference
+    function initTheme() {
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme) {
+        body.className = savedTheme;
+      } else {
+        body.className = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      updateIcon();
+    }
+
+    // Toggle theme
+    function toggleTheme() {
+      body.className = body.className === 'light' ? 'dark' : 'light';
+      localStorage.setItem('theme', body.className);
+      updateIcon();
+    }
+
+    // Update button icon
+    function updateIcon() {
+      toggleBtn.textContent = body.className === 'light' ? '🌙' : '🌞';
+    }
+
+    toggleBtn.addEventListener('click', toggleTheme);
+
+    // Init on load
+    initTheme();
+  </script>
 </body>
 </html>
