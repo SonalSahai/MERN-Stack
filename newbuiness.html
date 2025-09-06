@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sonal Sahai - Business Card</title>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif;}
+    body{min-height:100vh;display:flex;justify-content:center;align-items:center;transition:.5s;}
+    body.light{--bg:linear-gradient(135deg,#667eea,#764ba2);--card:#fff;--text:#333;--title:#764ba2;}
+    body.dark{--bg:linear-gradient(135deg,#1a1a2e,#16213e);--card:#222;--text:#ddd;--title:#a18cd1;}
+    body{background:var(--bg);color:var(--text);}
+    .card{background:var(--card);padding:30px;border-radius:20px;box-shadow:0 15px 35px rgba(0,0,0,.3);max-width:800px;width:100%;text-align:center;position:relative;}
+    img{width:140px;height:140px;border-radius:50%;border:5px solid var(--title);object-fit:cover;transition:.4s;}
+    h1{font-size:2rem;color:var(--text);}
+    h2{color:var(--title);margin:10px 0;}
+    .social a,button{padding:8px 16px;margin:5px;border-radius:20px;text-decoration:none;color:#fff;background:linear-gradient(135deg,#667eea,#764ba2);display:inline-block;border:none;cursor:pointer;}
+    .social{margin:15px 0;}
+    .contact p{cursor:pointer;font-size:.9rem;}
+    .theme-toggle{position:absolute;top:15px;right:15px;background:none;font-size:1.4rem;color:var(--title);}
+    .footer{margin-top:15px;font-size:.85rem;opacity:.8;}
+  </style>
+</head>
+<body>
+  <div class="card">
+    <button id="themeToggle" class="theme-toggle">🌙</button>
+    <img src="myphoto.jpg.jpg" alt="Sonal Sahai">
+    <h1 class="name">Sonal Sahai</h1>
+    <h2 class="title">CS Student | Web Developer</h2>
+    <p class="bio">3rd-year CS student | Skilled in Java, Python, PHP & .NET | Ex-THDC Intern</p>
+    <div class="social">
+      <a href="https://linkedin.com/in/sonalsahai" target="_blank">LinkedIn</a>
+      <a href="https://github.com/sonalsahai" target="_blank">GitHub</a>
+      <a href="mailto:sonalsahai1412@email.com">Email</a>
+    </div>
+    <div class="contact">
+      <p id="email">📧 sonalsahai1412@email.com</p>
+      <p>📱 +91 75678*****</p>
+    </div>
+    <div>
+      <button id="toggleBio">Toggle Bio</button>
+      <button id="hireBtn">Hire Me 🚀</button>
+    </div>
+    <div class="footer" id="dateTime"></div>
+  </div>
+
+<script>
+const body=document.body,btn=document.getElementById('themeToggle'),
+bio=document.querySelector('.bio'),title=document.querySelector('.title'),
+name=document.querySelector('.name'),email=document.getElementById('email'),
+dateTime=document.getElementById('dateTime');
+
+// Theme Switching
+function setTheme(t){body.className=t;localStorage.setItem('theme',t);btn.textContent=t==='light'?'🌙':'🌞';}
+setTheme(localStorage.getItem('theme')|| (matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'));
+btn.onclick=()=>setTheme(body.className==='light'?'dark':'light');
+
+// DOM Mastery: Toggle bio
+document.getElementById('toggleBio').onclick=()=>bio.style.display=bio.style.display==='none'?'block':'none';
+
+// Selection Skills: highlight name
+document.querySelector('.card').onmouseenter=()=>name.style.color='#ff9800';
+document.querySelector('.card').onmouseleave=()=>name.style.color='';
+
+// Content Control: change title
+document.getElementById('hireBtn').onclick=()=>title.textContent="Available for Projects 🚀";
+
+// Event Handling: copy email
+email.onclick=()=>{navigator.clipboard.writeText(email.textContent.replace("📧 ",""));alert("Email copied!");};
+
+// Date & Time
+setInterval(()=>dateTime.textContent="📅 "+new Date().toLocaleString(),1000);
+</script>
+</body>
+</html>
