@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Random Quote Generator</title>
+  <style>
+   body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+
+  /* Background image */
+  background: url("tehrii.jpg") no-repeat center center/cover;
+}
+
+/* Card container */
+.card {
+  background: #ffffffcc;
+  backdrop-filter: blur(10px);
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0px 10px 30px rgba(0,0,0,0.15);
+  max-width: 520px;
+  text-align: center;
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+/* Title */
+h1 {
+  font-size: 2rem;
+  margin-bottom: 15px;
+  color: #3a3a3a;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+/* Quote text */
+#quote {
+  font-size: 1.4rem;
+  font-style: italic;
+  color: #222;
+  margin-bottom: 12px;
+  min-height: 70px;
+  line-height: 1.5;
+}
+
+/* Author */
+#author {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-bottom: 25px;
+  color: #555;
+}
+
+/* Button group */
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+/* Buttons */
+button {
+  border: none;
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Hover effects */
+button:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0px 6px 16px rgba(0,0,0,0.2);
+}
+
+#new-quote {
+  background: black;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#new-quote:hover {
+  background: #333; /* dark gray on hover */
+  transform: scale(1.05); /* little zoom effect */
+}
+
+
+
+/* LinkedIn button */
+.linkedin-btn {
+  background: linear-gradient(135deg, #0077b5, #00a0dc);
+  color: white;
+}
+.linkedin-btn:hover {
+  background: linear-gradient(135deg, #005582, #0077b5);
+}
+
+/* Error message */
+#error-message {
+  color: #e63946;
+  font-size: 0.9rem;
+  margin-top: 10px;
+}
+
+/* Smooth fade-in */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>✨ Random Quote Generator ✨</h1>
+    <p id="quote">Loading...</p>
+    <p id="author"></p>
+
+    <div class="buttons">
+      <button id="new-quote">🔄 Get New Quote</button>
+      <button id="share-linkedin" class="linkedin-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="white" viewBox="0 0 24 24">
+          <path d="M22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.226.792 24 1.771 24h20.451C23.2 24 24 23.226 24 22.271V1.729C24 .774 23.2 0 22.225 0zM7.125 20.452H3.577V9h3.548v11.452zM5.35 7.577a2.062 2.062 0 110-4.124 2.062 2.062 0 010 4.124zM20.452 20.452h-3.548v-5.604c0-1.336-.027-3.054-1.861-3.054-1.861 0-2.146 1.453-2.146 2.954v5.704h-3.548V9h3.404v1.561h.047c.475-.9 1.635-1.848 3.367-1.848 3.6 0 4.266 2.367 4.266 5.445v6.294z"/>
+        </svg>
+        Share on LinkedIn
+      </button>
+    </div>
+
+    <p id="error-message"></p>
+  </div>
+
+  <!-- Link external JS -->
+  <script src="script.js"></script>
+</body>
+</html>
