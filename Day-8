@@ -1,0 +1,60 @@
+//package.json
+{
+  "name": "day-8",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
+
+
+//server.js
+const express = require("express");
+const app = express();
+const PORT = 3000;
+
+const projects = [
+  { id: 1, title: "Full-Stack E-Commerce Platform", role: "Developer" },
+  { id: 2, title: "Portfolio Website", role: "Frontend" },
+  { id: 3, title: "Chat App", role: "Backend" },
+];
+
+const workExperience = [
+  { id: 1, company: "ABC Pvt Ltd", role: "Software Engineer", years: "2021-2023" },
+  { id: 2, company: "XYZ Solutions", role: "Intern", years: "2020" },
+];
+
+app.get("/", (req, res) => {
+  res.send("Welcome to Resume API 🚀");
+});
+
+
+app.get("/api/projects", (req, res) => {
+  res.json(projects);
+});
+
+
+app.get("/api/experience", (req, res) => {
+  res.json(workExperience);
+});
+
+app.get("/api/projects/:id", (req, res) => {
+  const projectId = parseInt(req.params.id);
+  const project = projects.find((p) => p.id === projectId);
+
+  if (!project) {
+    return res.status(404).json({ error: "Project not found" });
+  }
+  res.json(project);
+});
+app.listen(PORT, () => {
+  console.log(`Server running at http://localhost:${PORT}`);
+});
