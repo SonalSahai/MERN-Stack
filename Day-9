@@ -1,0 +1,58 @@
+// server.js
+const express = require('express');
+const { MongoClient } = require('mongodb');
+
+const app = express();
+const PORT = 3000;
+
+// MongoDB connection details
+const mongoUrl = 'mongodb://localhost:27017';
+const dbName = 'resumeData';
+let db;
+
+// Async function to handle MongoDB connection
+async function connectToMongoDB() {
+  const client = new MongoClient(mongoUrl);
+
+  try {
+    // Connect to MongoDB
+    await client.connect();
+
+    // Log success message
+    console.log('✅ Successfully connected to MongoDB!');
+
+    // Get database reference
+    db = client.db(dbName);
+    console.log(`📊 Using database: ${dbName}`);
+
+    // 👉 Auto-insert sample data if collection is empty
+    const count = await db.collection('resumes').countDocuments();
+    if (count === 0) {
+      console.log("📌 No resumes found, inserting sample data...");
+      await db.collection('resumes').insertOne({
+        name: "Sonal Sahai",
+        title: "Data Scientist",
+        company: "Innovate Inc.",
+        years_experience: 7
+      });
+    }
+
+    // Fetch data from "resumes" collection
+    const resumes = await db.collection('resumes').find().toArray();
+
+    console.log('📄 Resumes found:');
+    console.log(resumes);
+
+    return db;
+  } catch (error) {
+    console.error('❌ MongoDB connection error:', error.message);
+    throw error;
+  }
+}
+
+// Start server after connecting
+connectToMongoDB().then(() => {
+  app.listen(PORT, () => {
+    console.log(`🚀 Server running on http://localhost:${PORT}`);
+  });
+});
